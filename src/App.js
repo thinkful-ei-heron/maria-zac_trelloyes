@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 class AppClass extends React.Component {
   static defaultProps = {store: {lists:[], allCards: {} } }
-  render() {return;};
-}
+};
 
 function Card(props) {
-  console.log(props);
   return (
     <div className="Card">
       <button type="button">delete</button>
@@ -17,18 +15,16 @@ function Card(props) {
 }
 
 function List(props) {
-  console.log(props);
-  const arr = [];
-  for (let i = 0; i < props.cards.length; i++) {
-    arr.push(<Card
-      key={props.cards.id}
-      title={props.cards.title}
-      content={props.cards.content} />);
-  };
+  const arr = props.cards.map((card) => <Card
+    key={card.id}
+    title={card.title}
+    content={card.content}
+    />
+)
   return (
     <section className="List">
         <header className="List-header">
-          <h2>First list</h2>
+          <h2>{props.header}</h2>
         </header>
         <div className="List-cards">
             {arr}
